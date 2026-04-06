@@ -19,8 +19,7 @@ return new class extends Migration
             $table->decimal('price', 8, 2);
             $table->timestamps();
 
-            //llaves foraneas
-            $table->foreignId('id_category')
+            $table->foreignId('category_id')
                 ->nullable()
                 ->constrained('categories')
                 ->nullOnDelete();
