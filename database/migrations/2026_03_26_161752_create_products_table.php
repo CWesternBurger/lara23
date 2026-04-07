@@ -20,11 +20,10 @@ return new class extends Migration
             $table->timestamps();
 
             //llaves foraneas
-            $table->foreignId('id_category')
+            $table->foreignId('idcategory')
                 ->nullable()
                 ->constrained('categories')
                 ->nullOnDelete();
-
         });
     }
 
