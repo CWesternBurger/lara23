@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Product;
+use App\Models\Category;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,9 +17,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(ProductTableSeeder::class);
-        // User::factory(10)->create();
-        Product::factory()->count(90)->create();
+        Category::factory()->count(7)->create()->each(function ($category) {
+            Product::factory()->count(30)->create([
+                'idcategory' => $category->id,
+            ]);
+        });
 
         /*
         User::factory()->create([
