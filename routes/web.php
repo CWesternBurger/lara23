@@ -18,7 +18,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/datos', [ctrlDatos::class, 'AccesoDatos'])->name('datos');
+Route::get('/datos', [ctrlDatos::class, 'AccesoDatos']);
+
+//Vista con datos link
+Route::get('/datoslink', [ctrlDatos::class, 'AccesoDatosLink']);
 
 require __DIR__.'/auth.php';
 
