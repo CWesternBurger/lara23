@@ -23,5 +23,13 @@ class ctrlDatos extends Controller
         Return view('vistadatoslink')->with(compact('traductorJson'));
     }
 
+    public function AccesoDatosLinkMundoITI(){
+
+        $enlace = Http::get('https://holisss.mundoiti.com/');
+
+        $traductorJson = $enlace->json();
+
+        Return view('vista_mundoiti')->with(compact('traductorJson'));
+    }
 
 }
