@@ -32,4 +32,13 @@ class ctrlDatos extends Controller
         Return view('vista_mundoiti')->with(compact('traductorJson'));
     }
 
+    public function AccesoDatosJC(){
+
+        $enlace = Http::get('https://juliocesarcruzgarcia.netlify.app/json/titanic.json');
+
+        $traductorJson = $enlace->json();
+
+        Return view('vistajc')->with(compact('traductorJson'));
+    }
+
 }

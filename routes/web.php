@@ -25,5 +25,7 @@ Route::get('/datoslink', [ctrlDatos::class, 'AccesoDatosLink']);
 
 Route::get('/datoslinkmundoiti', [ctrlDatos::class, 'AccesoDatosLinkMundoITI']);
 
+Route::get('/datosjc', [ctrlDatos::class, 'AccesoDatosJC']);
+
 require __DIR__.'/auth.php';
 
