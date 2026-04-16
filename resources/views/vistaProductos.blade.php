@@ -6,17 +6,22 @@
     <title>Productos</title>
 </head>
 <body>
+    <div style="align-items: center; display: flex; flex-direction: column;">
     <main>
         <h1>Vista sitio Productos</h1>
     </main>
+    </div>
 
+    <div style="align-items: center; display: flex; flex-direction: column;">
     <select id="categorias" name="Category">
         <option value="mx">Mexico</option>
         <option value="es">España</option>
         <option value="ar">Argentina</option>
         <option value="co">Colombia</option>
     </select>
+    </div>
 
+    <div style="align-items: center; display: flex; flex-direction: column;">
     <table>
         <tr>
             <th>Id</th>
@@ -38,5 +43,6 @@
         </tr>
         @endforeach
     <table>    
+    </div>
 
 </html>
