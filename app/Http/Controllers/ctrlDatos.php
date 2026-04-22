@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Support\Facades\Http;
 
 class ctrlDatos extends Controller
@@ -36,10 +37,5 @@ class ctrlDatos extends Controller
         $traductorJson = $enlace->json();
         $detalles = collect($traductorJson)->firstWhere('PassengerId', (int) $id);
         Return view('vistadetalle')->with(compact('detalles'));
-    }
-
-    public function Productos(){
-        $pro = Product::all();
-        Return view('vistaProductos')->with(compact('pro'));
     }
 }
