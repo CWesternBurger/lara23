@@ -11,7 +11,7 @@ class ctrlProductos extends Controller
 {
     public function index()
     {
-        $products = Product::with('category')->orderby("id")->get();
+        $products = Product::with('category')->orderBy('id')->get();
         $categories = Category::orderBy('name')->get();
 
         return view('Productos.index', compact('products', 'categories'));

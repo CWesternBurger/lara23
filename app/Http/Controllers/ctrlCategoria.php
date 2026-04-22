@@ -9,7 +9,7 @@ class ctrlCategoria extends Controller
 {
     public function index()
     {
-        $categories = Category::orderBy('id')->latest()->get();
+        $categories = Category::orderBy('id')->get();
 
         return view('Categorias.index', compact('categories'));
     }
