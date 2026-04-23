@@ -7,9 +7,15 @@ use App\Models\Category;
 
 class ctrlCategoria extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::orderBy('id')->get();
+        $query = Category::orderBy('id');
+
+        if ($request->filled('id')) {
+            $query->where('id', (int) $request->query('id'));
+        }
+
+        $categories = $query->get();
 
         return view('Categorias.index', compact('categories'));
     }

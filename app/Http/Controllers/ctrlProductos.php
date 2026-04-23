@@ -9,9 +9,15 @@ use App\Models\Category;
 
 class ctrlProductos extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::with('category')->orderBy('id')->get();
+        $query = Product::with('category')->orderBy('id');
+
+        if ($request->filled('id')) {
+            $query->where('id', (int) $request->query('id'));
+        }
+
+        $products = $query->get();
         $categories = Category::orderBy('name')->get();
 
         return view('Productos.index', compact('products', 'categories'));

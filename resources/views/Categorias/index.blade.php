@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Categorias</title>
+    <link rel="stylesheet" href="{{ asset('css/crud-lite.css') }}">
 </head>
 <body>
     <div>
@@ -14,6 +15,13 @@
     @if(session('success'))
         <p>{{ session('success') }}</p>
     @endif
+
+    <form method="GET" action="{{ route('Categorias.index') }}">
+        <label for="search-category-id">Buscar por ID:</label>
+        <input type="number" id="search-category-id" name="id" min="1" value="{{ request('id') }}">
+        <button type="submit">Buscar</button>
+        <a href="{{ route('Categorias.index') }}">Limpiar</a>
+    </form>
 
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
