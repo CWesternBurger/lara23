@@ -18,4 +18,4 @@
 
 ## Nota
 - El endpoint esta definido con `Route::apiResource('products', ctrlProductoAPI::class)`, por lo que sigue convenciones REST.
-- Como el modelo `Product` usa borrado logico, `delete()` marca el registro como eliminado en lugar de borrarlo fisicamente.
+- Como el modelo `Product` usa borrado logico, `delete()` marca el registro como eliminado en lugar de borrarlo fisicamenteeeeee
