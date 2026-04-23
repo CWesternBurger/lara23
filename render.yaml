@@ -1,0 +1,42 @@
+services:
+  - type: web
+    name: lara23-web
+    runtime: php
+    plan: free
+    region: oregon
+    autoDeployTrigger: commit
+    healthCheckPath: /
+    buildCommand: composer install --no-dev --optimize-autoloader && php artisan config:clear && php artisan view:cache
+    preDeployCommand: php artisan migrate --force
+    startCommand: php artisan serve --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: APP_NAME
+        value: Lara23
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_KEY
+        generateValue: true
+      - key: APP_URL
+        sync: false
+      - key: LOG_CHANNEL
+        value: stack
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_URL
+        fromDatabase:
+          name: lara23-db
+          property: connectionString
+      - key: SESSION_DRIVER
+        value: database
+      - key: CACHE_STORE
+        value: database
+      - key: QUEUE_CONNECTION
+        value: database
+
+databases:
+  - name: lara23-db
+    region: oregon
+    databaseName: lara23
+    user: lara23_user
