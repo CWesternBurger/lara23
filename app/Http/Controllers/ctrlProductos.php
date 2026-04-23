@@ -71,6 +71,6 @@ class ctrlProductos extends Controller
     {
         $product->delete();
         return redirect()->route('Productos.index')
-        ->with('success', 'Producto eliminado de forma correcta.');
+        ->with('success', 'Producto eliminado correctamente.');
     }
 }
