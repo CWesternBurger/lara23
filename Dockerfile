@@ -12,6 +12,11 @@ RUN apt-get update \
     && a2enmod rewrite headers \
     && rm -rf /var/lib/apt/lists/*
 
+# Ensure only one Apache MPM is enabled. The php module in this image
+# requires prefork, so disable event/worker if present and enable prefork.
+RUN a2dismod mpm_event mpm_worker || true \
+    && a2enmod mpm_prefork || true
+
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 RUN git config --global --add safe.directory /var/www/html
