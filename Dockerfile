@@ -14,8 +14,11 @@ RUN apt-get update \
 
 # Ensure only one Apache MPM is enabled. The php module in this image
 # requires prefork, so disable event/worker if present and enable prefork.
-RUN a2dismod mpm_event mpm_worker || true \
-    && a2enmod mpm_prefork || true
+# Por esto:
+RUN a2dismod mpm_event mpm_worker mpm_prefork || true \
+    && a2enmod mpm_prefork \
+    && echo "Loaded modules:" \
+    && apachectl -M 2>&1 | grep mpm
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
