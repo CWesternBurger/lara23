@@ -21,4 +21,9 @@ rm -f /etc/apache2/mods-enabled/mpm_*.load \
 ln -sf /etc/apache2/mods-available/mpm_prefork.load /etc/apache2/mods-enabled/mpm_prefork.load
 ln -sf /etc/apache2/mods-available/mpm_prefork.conf /etc/apache2/mods-enabled/mpm_prefork.conf
 
+# Fix puerto Railway
+PORT=${PORT:-80}
+sed -i "s/*:80/*:$PORT/g" /etc/apache2/sites-available/000-default.conf
+sed -i "s/Listen 80/Listen $PORT/" /etc/apache2/ports.conf
+
 exec "$@"
