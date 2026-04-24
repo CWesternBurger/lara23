@@ -20,10 +20,10 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'=>fake()->name(),
-            'description'=>fake()->sentence(),
-            'description_long'=>fake()->text(),
-            'price'=>fake()->randomFloat(2, 7, 777),
+            'name' => $this->faker->name(),
+            'description' => $this->faker->sentence(),
+            'description_long' => $this->faker->text(),
+            'price' => $this->faker->randomFloat(2, 7, 777),
         ];
     }
 }

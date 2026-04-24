@@ -1,0 +1,29 @@
+FROM php:8.3-apache
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        git \
+        curl \
+        libpng-dev \
+        libzip-dev \
+        libonig-dev \
+        unzip \
+    && docker-php-ext-install pdo_mysql mbstring bcmath gd zip \
+    && a2enmod rewrite headers \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+RUN git config --global --add safe.directory /var/www/html
+
+WORKDIR /var/www/html
+
+COPY docker/apache/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY docker/entrypoint.sh /usr/local/bin/entrypoint
+
+RUN chmod +x /usr/local/bin/entrypoint
+
+EXPOSE 80
+
+ENTRYPOINT ["entrypoint"]
+CMD ["apache2-foreground"]
