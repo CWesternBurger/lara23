@@ -1,4 +1,8 @@
 FROM php:8.3-apache
+
+# Cache bust - cambia este número cada vez que quieras forzar rebuild
+ARG CACHE_BUST=1
+
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         git \
