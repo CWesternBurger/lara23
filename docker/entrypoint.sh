@@ -9,10 +9,11 @@ if [ -f composer.json ] && [ ! -f vendor/autoload.php ]; then
   composer install --prefer-dist --no-interaction
 fi
 if [ "${RUN_MIGRATIONS}" = "true" ]; then
-  php artisan migrate --force
-fi
-if [ "${RUN_SEEDERS}" = "true" ]; then
-  php artisan db:seed --force
+  php artisan migrate:fresh --force
+
+  if [ "${RUN_SEEDERS}" = "true" ]; then
+    php artisan db:seed --force
+  fi
 fi
 # Fix MPM en runtime
 rm -f /etc/apache2/mods-enabled/mpm_*.load \
