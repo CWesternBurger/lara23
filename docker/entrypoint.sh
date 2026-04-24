@@ -8,12 +8,9 @@ chmod -R ug+rwx storage bootstrap/cache
 if [ -f composer.json ] && [ ! -f vendor/autoload.php ]; then
   composer install --prefer-dist --no-interaction
 fi
-if [ "${RUN_MIGRATIONS}" = "true" ]; then
+if [ "${RUN_MIGRATIONS}" = "true" ] || [ "${RUN_SEEDERS}" = "true" ]; then
   php artisan migrate:fresh --force
-
-  if [ "${RUN_SEEDERS}" = "true" ]; then
-    php artisan db:seed --force
-  fi
+  php artisan db:seed --force
 fi
 # Fix MPM en runtime
 rm -f /etc/apache2/mods-enabled/mpm_*.load \
