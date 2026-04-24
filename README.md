@@ -50,6 +50,7 @@ En este modo el contenedor `app` monta el codigo del proyecto y usa dependencias
 ```env
 APP_ENV=production
 APP_DEBUG=false
+APP_KEY=base64:tu_app_key
 APP_URL=https://tu-dominio.railway.app
 DB_CONNECTION=mysql
 DB_HOST=tu-host-mysql
@@ -57,10 +58,7 @@ DB_PORT=3306
 DB_DATABASE=tu_db
 DB_USERNAME=tu_usuario
 DB_PASSWORD=tu_password
-```
-
-- Si quieres ejecutar migraciones al arrancar el contenedor:
-
-```env
 RUN_MIGRATIONS=true
 ```
+
+- Despues del primer despliegue, cambia `RUN_MIGRATIONS` a `false`.

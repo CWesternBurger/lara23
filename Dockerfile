@@ -20,8 +20,12 @@ WORKDIR /var/www/html
 
 COPY docker/apache/000-default.conf /etc/apache2/sites-available/000-default.conf
 COPY docker/entrypoint.sh /usr/local/bin/entrypoint
+COPY . .
 
-RUN chmod +x /usr/local/bin/entrypoint
+RUN composer install --prefer-dist --no-interaction \
+    && chmod +x /usr/local/bin/entrypoint \
+    && mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views storage/logs bootstrap/cache \
+    && chown -R www-data:www-data storage bootstrap/cache
 
 EXPOSE 80
 
