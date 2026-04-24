@@ -13,8 +13,8 @@ fi
 
 if [ "${RUN_MIGRATIONS}" = "true" ]; then
   php artisan migrate --force
+  php artisan db:seed --force
 fi
-
 # Fix MPM en runtime
 rm -f /etc/apache2/mods-enabled/mpm_*.load \
       /etc/apache2/mods-enabled/mpm_*.conf
